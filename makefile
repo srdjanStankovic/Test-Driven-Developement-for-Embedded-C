@@ -45,7 +45,7 @@ CFLAGS += -Wold-style-definition
 
 TARGET_BASE1=testName
 TARGET1 = $(TARGET_BASE1)$(TARGET_EXTENSION)
-SRC_FILES1=$(UNITY_ROOT)/src/unity.c $(UNITY_ROOT)/extras/fixture/src/unity_fixture.c test/AllTests.c test/TestLedDriver.c test/TestRunnerLedDriver.c src/LedDriver.h src/LedDriver.c
+SRC_FILES1=$(UNITY_ROOT)/src/unity.c $(UNITY_ROOT)/extras/fixture/src/unity_fixture.c test/AllTests.c test/TestLedDriver.c test/TestRunnerLedDriver.c src/LedDriver.h src/LedDriver.c mocks/RuntimeErrorStub.c
 INC_DIRS=-Isrc -I$(UNITY_ROOT)/src -I$(UNITY_ROOT)/extras/memory/src
 SYMBOLS=
 
@@ -56,7 +56,7 @@ default: $(SRC_FILES1)
 	- ./$(TARGET1)
 
 test/test_runners/TestProductionCode_Runner.c: test/AllTests.c
-	ruby $(UNITY_ROOT)/auto/generate_test_runner.rb test/AllTests.c test/TestLedDriver.c
+	ruby $(UNITY_ROOT)/auto/generate_test_runner.rb test/AllTests.c test/TestLedDriver.c mocks/RuntimeErrorStub.c
 clean:
 	$(CLEANUP) $(TARGET1)
 
